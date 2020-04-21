@@ -1,0 +1,6 @@
+language: dart
+dart:
+  - stable
+script:
+  - pub get --packages-dir
+  - pub run build_runner build
