@@ -278,10 +278,10 @@ class _RestClient implements RestClient {
   getChannelHistory(roomId) async {
     ArgumentError.checkNotNull(roomId, 'roomId');
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{'roomId': roomId};
     final _data = <String, dynamic>{};
     final Response<Map<String, dynamic>> _result = await _dio.request(
-        '/api/v1/channels.history?roomId=$roomId',
+        '/api/v1/channels.history',
         queryParameters: queryParameters,
         options: RequestOptions(
             method: 'GET',
@@ -306,6 +306,25 @@ class _RestClient implements RestClient {
         queryParameters: queryParameters,
         options: RequestOptions(
             method: 'POST',
+            headers: <String, dynamic>{'requires-auth': 'true'},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    final value = DeleteMessageResult.fromJson(_result.data);
+    return Future.value(value);
+  }
+
+  @override
+  getChatMessage(messageId) async {
+    ArgumentError.checkNotNull(messageId, 'messageId');
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{'msgId': messageId};
+    final _data = <String, dynamic>{};
+    final Response<Map<String, dynamic>> _result = await _dio.request(
+        '/api/v1/chat.getMessage',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'GET',
             headers: <String, dynamic>{'requires-auth': 'true'},
             extra: _extra,
             baseUrl: baseUrl),
