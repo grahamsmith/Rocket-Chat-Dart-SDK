@@ -154,7 +154,7 @@ Help of any kind small or large is very much welcomed. PR's will be reviewed.
 | /api/v1/chat.getDeletedMessages	   | | |
 | /api/v1/chat.getDiscussions          | | |
 | /api/v1/chat.getMentionedMessages    | | |
-| /api/v1/chat.getMessage              | | |
+| /api/v1/chat.getMessage              | ✅ | |
 | /api/v1/chat.getMessageReadReceipts  | | |
 | /api/v1/chat.getPinnedMessages	   | | |
 | /api/v1/chat.getSnippetedMessages    | | |
