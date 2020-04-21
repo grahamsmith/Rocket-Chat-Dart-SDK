@@ -9,6 +9,8 @@ A simple usage example:
 
 ```dart
 import 'package:rocket_chat_dart_sdk/rocket_chat_dart_sdk.dart';
+
+RocketChatClient.getInstance(serverUrl: 'YOUR SERVER URL');
 ```
 ## Current Progress
 
