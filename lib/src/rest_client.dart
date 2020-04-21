@@ -5,6 +5,7 @@ import 'package:dio/dio.dart' hide Headers;
 import 'package:rocket_chat_dart_sdk/src/models/channels/get_channel_history.dart';
 import 'package:rocket_chat_dart_sdk/src/models/push/delete_push_token.dart';
 import 'package:rocket_chat_dart_sdk/src/models/rooms/get_admin_rooms.dart';
+import 'models/chat/delete_message.dart';
 import 'models/push/create_push_token.dart';
 import 'models/rooms/create_discussion.dart';
 import 'models/rooms/favourite_room.dart';
@@ -101,10 +102,10 @@ abstract class RestClient {
   @Headers(<String, String>{'requires-auth': 'true'})
   Future<GetChannelHistoryResult> getChannelHistory(@Path() String roomId);
 
-//  @POST("/api/v1/chat.delete")
-//  @Headers(<String, String>{"requires-auth": "true"})
-//  Future<DeleteChatMessageResult> deleteChatMessage(@Body() DeleteChatMessageRequest deleteChatMessageRequest)
-//
+  @POST('/api/v1/chat.delete')
+  @Headers(<String, String>{'requires-auth': 'true'})
+  Future<DeleteMessageResult> deleteChatMessage(@Body() DeleteMessageRequest deleteChatMessageRequest);
+
 //  @GET("/api/v1/chat.getMessage?msgId={messageId}")
 //  @Headers(<String, String>{"requires-auth": "true"})
 //  Future<GetChatMessageResult> getChatMessage(@Path String messageId)

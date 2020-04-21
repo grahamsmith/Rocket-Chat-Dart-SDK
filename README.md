@@ -12,7 +12,16 @@ import 'package:rocket_chat_dart_sdk/rocket_chat_dart_sdk.dart';
 
 RocketChatClient.getInstance(serverUrl: 'YOUR SERVER URL');
 ```
+
+## Building
+
+When editing the REST Client, new generated files will need to be created. To do this run
+
+```pub run build_runner build```
+
 ## Current Progress
+
+Help of any kind small or large is very much welcomed. PR's will be reviewed.
 
 | Endpoint      | State         | Notes  |
 | ------------- |:-------------:| -----|
@@ -143,33 +152,33 @@ RocketChatClient.getInstance(serverUrl: 'YOUR SERVER URL');
 | /api/v1/groups.unarchive       | | |
 | | | |
 | **Chat** | | |
-| /api/v1/chat.delete                  | | |
+| /api/v1/chat.delete                  | ✅ | |
 | /api/v1/chat.followMessage           | | |
-| /api/v1/chat.getDeletedMessages	     | | |
+| /api/v1/chat.getDeletedMessages	   | | |
 | /api/v1/chat.getDiscussions          | | |
 | /api/v1/chat.getMentionedMessages    | | |
 | /api/v1/chat.getMessage              | | |
 | /api/v1/chat.getMessageReadReceipts  | | |
-| /api/v1/chat.getPinnedMessages	     | | |
+| /api/v1/chat.getPinnedMessages	   | | |
 | /api/v1/chat.getSnippetedMessages    | | |
 | /api/v1/chat.getSnippetedMessageById | | |
 | /api/v1/chat.getStarredMessages      | | |
 | /api/v1/chat.getThreadMessages       | | |
-| /api/v1/chat.getThreadsList	         | | |
-| /api/v1/chat.ignoreUser	             | | |
-| /api/v1/chat.pinMessage	             | | |
+| /api/v1/chat.getThreadsList	       | | |
+| /api/v1/chat.ignoreUser	           | | |
+| /api/v1/chat.pinMessage	           | | |
 | /api/v1/chat.postMessage	           | ✅ | |
-| /api/v1/chat.react	                 | | |
+| /api/v1/chat.react	               | | |
 | /api/v1/chat.reportMessage           | | |
-| /api/v1/chat.search	                 | | |
+| /api/v1/chat.search	               | | |
 | /api/v1/chat.starMessage             | | |
 | /api/v1/chat.sendMessage             | ✅ | |
-| /api/v1/chat.syncThreadMessages	     | | |
+| /api/v1/chat.syncThreadMessages	   | | |
 | /api/v1/chat.syncThreadsList         | | |
 | /api/v1/chat.unfollowMessage         | | |
 | /api/v1/chat.unPinMessage	           | | |
-| /api/v1/chat.unStarMessage	         | | |
-| /api/v1/chat.update	                 | | |
+| /api/v1/chat.unStarMessage	       | | |
+| /api/v1/chat.update	               | | |
 | | | |
 | **Custom Sounds** | | |
 | /api/v1/custom-sounds.list | | Low Priority ⬇️ |

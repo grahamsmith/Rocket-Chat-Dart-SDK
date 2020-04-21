@@ -234,7 +234,8 @@ class _RestClient implements RestClient {
         pushTokenDeleteRequest, 'pushTokenDeleteRequest');
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _data = pushTokenDeleteRequest;
+    final _data = <String, dynamic>{};
+    _data.addAll(pushTokenDeleteRequest?.toJson() ?? <String, dynamic>{});
     final Response<Map<String, dynamic>> _result = await _dio.request(
         '/api/v1/push.token',
         queryParameters: queryParameters,
@@ -244,7 +245,7 @@ class _RestClient implements RestClient {
             extra: _extra,
             baseUrl: baseUrl),
         data: _data);
-    final value = dynamic.fromJson(_result.data);
+    final value = DeletePushTokenResult.fromJson(_result.data);
     return Future.value(value);
   }
 
@@ -289,6 +290,27 @@ class _RestClient implements RestClient {
             baseUrl: baseUrl),
         data: _data);
     final value = GetChannelHistoryResult.fromJson(_result.data);
+    return Future.value(value);
+  }
+
+  @override
+  deleteChatMessage(deleteChatMessageRequest) async {
+    ArgumentError.checkNotNull(
+        deleteChatMessageRequest, 'deleteChatMessageRequest');
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(deleteChatMessageRequest?.toJson() ?? <String, dynamic>{});
+    final Response<Map<String, dynamic>> _result = await _dio.request(
+        '/api/v1/chat.delete',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'POST',
+            headers: <String, dynamic>{'requires-auth': 'true'},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    final value = dynamic.fromJson(_result.data);
     return Future.value(value);
   }
 }
