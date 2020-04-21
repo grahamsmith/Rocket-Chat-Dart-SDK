@@ -5,27 +5,33 @@ import 'auth/login_interceptor.dart';
 import 'rest_client.dart';
 import 'package:dio/dio.dart';
 
-
 class RocketChatClient {
 
-  RestClient restClient;
+  static RocketChatClient _instance;
 
-  RocketChatClient(this.restClient);
+  final RestClient restClient;
 
-  static RocketChatClient instance(String serverUrl) {
+  RocketChatClient._privateConstructor(this.restClient);
 
-    var options = BaseOptions(
-      baseUrl: serverUrl,
-      connectTimeout: 5000,
-      receiveTimeout: 3000,
-    );
+  static RocketChatClient getInstance({String serverUrl}) {
 
-    var dio = Dio(options);
-    dio.interceptors.add(AuthInterceptor());
-    dio.interceptors.add(LoginInterceptor());
+    if(serverUrl != null && serverUrl.isNotEmpty) {
 
-    var service = RestClient(dio);
+      var options = BaseOptions(
+        baseUrl: serverUrl,
+        connectTimeout: 5000,
+        receiveTimeout: 3000,
+      );
 
-    return RocketChatClient(service);
+      var dio = Dio(options);
+      dio.interceptors.add(AuthInterceptor());
+      dio.interceptors.add(LoginInterceptor());
+
+      var service = RestClient(dio);
+
+      _instance = RocketChatClient._privateConstructor(service);
+    }
+
+    return _instance;
   }
 }

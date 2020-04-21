@@ -2,6 +2,10 @@ library rocket_chat_dart_sdk;
 
 import 'package:retrofit/retrofit.dart';
 import 'package:dio/dio.dart' hide Headers;
+import 'package:rocket_chat_dart_sdk/src/models/channels/get_channel_history.dart';
+import 'package:rocket_chat_dart_sdk/src/models/push/delete_push_token.dart';
+import 'package:rocket_chat_dart_sdk/src/models/rooms/get_admin_rooms.dart';
+import 'models/push/create_push_token.dart';
 import 'models/rooms/create_discussion.dart';
 import 'models/rooms/favourite_room.dart';
 import 'models/rooms/get_room_info.dart';
@@ -11,7 +15,6 @@ import 'models/authentication/login.dart';
 import 'models/authentication/logout.dart';
 import 'models/authentication/me.dart';
 import 'models/chat/send_message.dart';
-import 'models/push/create_push_token.dart';
 import 'models/rooms/leave_room.dart';
 
 part 'rest_client.g.dart';
@@ -38,6 +41,10 @@ abstract class RestClient {
 
   //ROOMS
 
+  @GET('/api/v1/rooms.adminRooms')
+  @Headers(<String, String>{'requires-auth': 'true'})
+  Future<GetAdminRoomsResult> getAdminRooms({@Query('types') String types = '', @Query('filter') String filter = ''});
+
   @POST('/api/v1/rooms.leave')
   @Headers(<String, String>{'requires-auth': 'true'})
   Future<LeaveRoomResult> leaveRoom(@Body() LeaveRoomRequest leaveRoomRequest);
@@ -52,11 +59,7 @@ abstract class RestClient {
 
   @GET('/api/v1/rooms.get')
   @Headers(<String, String>{'requires-auth': 'true'})
-  Future<GetRoomsResult> getRooms();
-
-  @GET('/api/v1/rooms.get?updatedSince={since}')
-  @Headers(<String, String>{'requires-auth': 'true'})
-  Future<GetRoomsResult> getRoomsSince(@Path() String since);
+  Future<GetRoomsResult> getRooms({@Query('updatedSince') String updatedSince = ''});
 
   @GET('/api/v1/rooms.info?roomId={roomId}')
   @Headers(<String, String>{'requires-auth': 'true'})
@@ -80,19 +83,23 @@ abstract class RestClient {
 
   //PUSH TOKENS
 
-//  @POST("/api/v1/push.token")
-//  @Headers(<String, String>{"requires-auth": "true"})
-//  Future<CreatePushTokenResult> savePushToken(@Body() CreatePushTokenRequest pushTokenRequest);
-//
-//  @DELETE("/api/v1/push.token")
-//  @Headers(<String, String>{"requires-auth": "true"})
-//  Future<PushTokenDeleteResult> deletePushToken(@Body() PushTokenDeleteRequest pushTokenDeleteRequest);
+  @POST('/api/v1/push.token')
+  @Headers(<String, String>{'requires-auth': 'true'})
+  Future<CreatePushTokenResult> savePushToken(@Body() CreatePushTokenRequest pushTokenRequest);
+
+  @DELETE('/api/v1/push.token')
+  @Headers(<String, String>{'requires-auth': 'true'})
+  Future<DeletePushTokenResult> deletePushToken(@Body() DeletePushTokenRequest pushTokenDeleteRequest);
 
   //CHAT
 
-  @POST('/api/v1/chat.sendMessage')
+  @POST('/api/v1/chat.postMessage')
+  @Headers(<String, String>{'requires-auth': 'true', 'Content-Type': 'application/json'})
+  Future<SendMessageResponse> sendChatMessage(@Body() PostMessage sendChatMessageRequest);
+
+  @GET('/api/v1/channels.history?roomId={roomId}')
   @Headers(<String, String>{'requires-auth': 'true'})
-  Future<SendMessageResponse> sendChatMessage(@Body() SendMessageRequest sendChatMessageRequest);
+  Future<GetChannelHistoryResult> getChannelHistory(@Path() String roomId);
 
 //  @POST("/api/v1/chat.delete")
 //  @Headers(<String, String>{"requires-auth": "true"})

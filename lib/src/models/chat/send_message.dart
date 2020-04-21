@@ -6,7 +6,7 @@ part 'send_message.g.dart';
 class SendMessageRequest {
 
   @JsonKey(name: 'message')
-  Message message;
+  SendMessage message;
 
   SendMessageRequest(this.message);
 
@@ -15,7 +15,7 @@ class SendMessageRequest {
 }
 
 @JsonSerializable()
-class Message {
+class SendMessage {
 
   @JsonKey(name: 'rid')
   String roomId;
@@ -26,10 +26,25 @@ class Message {
   @JsonKey(name: 'ts')
   String timestamp;
 
-  Message(this.roomId, this.message, this.timestamp);
+  SendMessage(this.roomId, this.message, this.timestamp);
 
-  factory Message.fromJson(Map<String, dynamic> json) => _$MessageFromJson(json);
-  Map<String, dynamic> toJson() => _$MessageToJson(this);
+  factory SendMessage.fromJson(Map<String, dynamic> json) => _$SendMessageFromJson(json);
+  Map<String, dynamic> toJson() => _$SendMessageToJson(this);
+}
+
+@JsonSerializable()
+class PostMessage {
+
+  @JsonKey(name: 'roomId')
+  String roomId;
+
+  @JsonKey(name: 'text')
+  String message;
+
+  PostMessage(this.roomId, this.message);
+
+  factory PostMessage.fromJson(Map<String, dynamic> json) => _$PostMessageFromJson(json);
+  Map<String, dynamic> toJson() => _$PostMessageToJson(this);
 }
 
 @JsonSerializable()

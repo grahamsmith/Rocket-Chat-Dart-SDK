@@ -5,10 +5,10 @@ part 'get_room_info.g.dart';
 @JsonSerializable()
 class GetRoomInfoResult {
 
-  @JsonKey(name: "success")
+  @JsonKey(name: 'success')
   bool success;
 
-  @JsonKey(name: "room")
+  @JsonKey(name: 'room')
   GetRoomInfoResultRoom room;
 
   GetRoomInfoResult(this.success, this.room);

@@ -72,6 +72,25 @@ class _RestClient implements RestClient {
   }
 
   @override
+  getAdminRooms({types = '', filter = ''}) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{'types': types, 'filter': filter};
+    queryParameters.removeWhere((k, v) => v == null);
+    final _data = <String, dynamic>{};
+    final Response<Map<String, dynamic>> _result = await _dio.request(
+        '/api/v1/rooms.adminRooms',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'GET',
+            headers: <String, dynamic>{'requires-auth': 'true'},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    final value = GetAdminRoomsResult.fromJson(_result.data);
+    return Future.value(value);
+  }
+
+  @override
   leaveRoom(leaveRoomRequest) async {
     ArgumentError.checkNotNull(leaveRoomRequest, 'leaveRoomRequest');
     const _extra = <String, dynamic>{};
@@ -133,31 +152,13 @@ class _RestClient implements RestClient {
   }
 
   @override
-  getRooms() async {
+  getRooms({updatedSince = ''}) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{'updatedSince': updatedSince};
+    queryParameters.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     final Response<Map<String, dynamic>> _result = await _dio.request(
         '/api/v1/rooms.get',
-        queryParameters: queryParameters,
-        options: RequestOptions(
-            method: 'GET',
-            headers: <String, dynamic>{'requires-auth': 'true'},
-            extra: _extra,
-            baseUrl: baseUrl),
-        data: _data);
-    final value = GetRoomsResult.fromJson(_result.data);
-    return Future.value(value);
-  }
-
-  @override
-  getRoomsSince(since) async {
-    ArgumentError.checkNotNull(since, 'since');
-    const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    final Response<Map<String, dynamic>> _result = await _dio.request(
-        '/api/v1/rooms.get?updatedSince=$since',
         queryParameters: queryParameters,
         options: RequestOptions(
             method: 'GET',
@@ -208,6 +209,46 @@ class _RestClient implements RestClient {
   }
 
   @override
+  savePushToken(pushTokenRequest) async {
+    ArgumentError.checkNotNull(pushTokenRequest, 'pushTokenRequest');
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(pushTokenRequest?.toJson() ?? <String, dynamic>{});
+    final Response<Map<String, dynamic>> _result = await _dio.request(
+        '/api/v1/push.token',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'POST',
+            headers: <String, dynamic>{'requires-auth': 'true'},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    final value = CreatePushTokenResult.fromJson(_result.data);
+    return Future.value(value);
+  }
+
+  @override
+  deletePushToken(pushTokenDeleteRequest) async {
+    ArgumentError.checkNotNull(
+        pushTokenDeleteRequest, 'pushTokenDeleteRequest');
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = pushTokenDeleteRequest;
+    final Response<Map<String, dynamic>> _result = await _dio.request(
+        '/api/v1/push.token',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'DELETE',
+            headers: <String, dynamic>{'requires-auth': 'true'},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    final value = dynamic.fromJson(_result.data);
+    return Future.value(value);
+  }
+
+  @override
   sendChatMessage(sendChatMessageRequest) async {
     ArgumentError.checkNotNull(
         sendChatMessageRequest, 'sendChatMessageRequest');
@@ -216,15 +257,38 @@ class _RestClient implements RestClient {
     final _data = <String, dynamic>{};
     _data.addAll(sendChatMessageRequest?.toJson() ?? <String, dynamic>{});
     final Response<Map<String, dynamic>> _result = await _dio.request(
-        '/api/v1/chat.sendMessage',
+        '/api/v1/chat.postMessage',
         queryParameters: queryParameters,
         options: RequestOptions(
             method: 'POST',
+            headers: <String, dynamic>{
+              'requires-auth': 'true',
+              'Content-Type': 'application/json'
+            },
+            extra: _extra,
+            contentType: 'application/json',
+            baseUrl: baseUrl),
+        data: _data);
+    final value = SendMessageResponse.fromJson(_result.data);
+    return Future.value(value);
+  }
+
+  @override
+  getChannelHistory(roomId) async {
+    ArgumentError.checkNotNull(roomId, 'roomId');
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final Response<Map<String, dynamic>> _result = await _dio.request(
+        '/api/v1/channels.history?roomId=$roomId',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'GET',
             headers: <String, dynamic>{'requires-auth': 'true'},
             extra: _extra,
             baseUrl: baseUrl),
         data: _data);
-    final value = SendMessageResponse.fromJson(_result.data);
+    final value = GetChannelHistoryResult.fromJson(_result.data);
     return Future.value(value);
   }
 }
