@@ -244,8 +244,8 @@ Help of any kind small or large is very much welcomed. PR's will be reviewed.
 | /api/v1/rooms.upload/:rid      | 🟠 | |
 | | | |
 | **Command Methods** | | |
-| /api/v1/commands.get  | 🟠 | |
-| /api/v1/commands.list | 🟠 | |
+| /api/v1/commands.get  | ✅ | |
+| /api/v1/commands.list | ✅ | |
 | /api/v1/commands.run	| | |
 | | | |
 | **Custom User Status** | | |
