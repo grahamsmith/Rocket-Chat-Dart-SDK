@@ -3,6 +3,7 @@ library rocket_chat_dart_sdk;
 import 'package:retrofit/retrofit.dart';
 import 'package:dio/dio.dart' hide Headers;
 import 'package:rocket_chat_dart_sdk/src/models/chat/star_message.dart';
+import 'package:rocket_chat_dart_sdk/src/models/chat/unstar_message.dart';
 
 import 'models/channels/get_channel_history.dart';
 import 'models/chat/delete_message.dart';
@@ -123,4 +124,7 @@ abstract class RestClient {
   @Headers(<String, String>{'requires-auth': 'true'})
   Future<RocketChatResponse> starChatMessage(StarMessageRequest followMessageRequest);
 
+  @POST('/api/v1/chat.unstarMessage')
+  @Headers(<String, String>{'requires-auth': 'true'})
+  Future<RocketChatResponse> unstarChatMessage(UnstarMessageRequest followMessageRequest);
 }

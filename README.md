@@ -168,13 +168,13 @@ Help of any kind small or large is very much welcomed. PR's will be reviewed.
 | /api/v1/chat.react	               | | |
 | /api/v1/chat.reportMessage           | | |
 | /api/v1/chat.search	               | | |
-| /api/v1/chat.starMessage             | | |
+| /api/v1/chat.starMessage             | ✅ | |
 | /api/v1/chat.sendMessage             | ✅ | |
 | /api/v1/chat.syncThreadMessages	   | | |
 | /api/v1/chat.syncThreadsList         | | |
 | /api/v1/chat.unfollowMessage         | | |
 | /api/v1/chat.unPinMessage	           | | |
-| /api/v1/chat.unStarMessage	       | | |
+| /api/v1/chat.unStarMessage	       | ✅ | |
 | /api/v1/chat.update	               | | |
 | | | |
 | **Custom Sounds** | | |
