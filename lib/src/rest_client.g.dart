@@ -343,7 +343,26 @@ class _RestClient implements RestClient {
         '/api/v1/chat.followMessage',
         queryParameters: queryParameters,
         options: RequestOptions(
-            method: 'GET',
+            method: 'POST',
+            headers: <String, dynamic>{'requires-auth': 'true'},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    final value = RocketChatResponse.fromJson(_result.data);
+    return Future.value(value);
+  }
+
+  @override
+  starChatMessage(followMessageRequest) async {
+    ArgumentError.checkNotNull(followMessageRequest, 'followMessageRequest');
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final Response<Map<String, dynamic>> _result = await _dio.request(
+        '/api/v1/chat.starMessage',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'POST',
             headers: <String, dynamic>{'requires-auth': 'true'},
             extra: _extra,
             baseUrl: baseUrl),
