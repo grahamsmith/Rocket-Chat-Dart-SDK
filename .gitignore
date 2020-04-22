@@ -11,3 +11,5 @@ build/
 doc/api/
 
 .DS_Store
+
+*.g.dart
