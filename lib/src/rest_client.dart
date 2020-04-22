@@ -2,12 +2,14 @@ library rocket_chat_dart_sdk;
 
 import 'package:retrofit/retrofit.dart';
 import 'package:dio/dio.dart' hide Headers;
-import 'package:rocket_chat_dart_sdk/src/models/channels/get_channel_history.dart';
-import 'package:rocket_chat_dart_sdk/src/models/chat/get_message.dart';
-import 'package:rocket_chat_dart_sdk/src/models/push/delete_push_token.dart';
-import 'package:rocket_chat_dart_sdk/src/models/rooms/get_admin_rooms.dart';
+
+import 'models/channels/get_channel_history.dart';
 import 'models/chat/delete_message.dart';
+import 'models/chat/follow_message.dart';
+import 'models/chat/get_message.dart';
+import 'models/common/rocket_chat_response.dart';
 import 'models/push/create_push_token.dart';
+import 'models/push/delete_push_token.dart';
 import 'models/rooms/create_discussion.dart';
 import 'models/rooms/favourite_room.dart';
 import 'models/rooms/get_room_info.dart';
@@ -110,5 +112,9 @@ abstract class RestClient {
   @GET('/api/v1/chat.getMessage')
   @Headers(<String, String>{'requires-auth': 'true'})
   Future<GetMessageResult> getChatMessage(@Query('msgId') String messageId);
+
+  @GET('/api/v1/chat.followMessage')
+  @Headers(<String, String>{'requires-auth': 'true'})
+  Future<RocketChatResponse> followChatMessage(FollowMessageRequest followMessageRequest);
 
 }

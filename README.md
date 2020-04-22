@@ -150,7 +150,7 @@ Help of any kind small or large is very much welcomed. PR's will be reviewed.
 | | | |
 | **Chat** | | |
 | /api/v1/chat.delete                  | ✅ | |
-| /api/v1/chat.followMessage           | | |
+| /api/v1/chat.followMessage           | ✅ | |
 | /api/v1/chat.getDeletedMessages	   | | |
 | /api/v1/chat.getDiscussions          | | |
 | /api/v1/chat.getMentionedMessages    | | |
