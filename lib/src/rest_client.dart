@@ -12,6 +12,7 @@ import 'models/chat/delete_message.dart';
 import 'models/chat/follow_message.dart';
 import 'models/chat/get_message.dart';
 import 'models/common/rocket_chat_response.dart';
+import 'models/info/api_info.dart';
 import 'models/push/create_push_token.dart';
 import 'models/push/delete_push_token.dart';
 import 'models/rooms/create_discussion.dart';
@@ -36,7 +37,12 @@ abstract class RestClient {
 
   factory RestClient(Dio dio, {String baseUrl}) = _RestClient;
 
-  //AUTHENTICATION
+  // INFO
+
+  @GET('/api/info')
+  Future<ApiInfoResult> getApiInfo();
+
+  // AUTHENTICATION
 
   @POST('/api/v1/login')
   Future<LoginResult> login(@Body() LoginRequest loginRequest);
