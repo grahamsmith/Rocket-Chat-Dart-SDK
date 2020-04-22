@@ -23,7 +23,7 @@ Help of any kind small or large is very much welcomed. PR's will be reviewed.
 | Endpoint      | State         | Notes  |
 | ------------- |:-------------:| -----|
 | **Miscellaneous Information** | | |
-| /api/info               | | |
+| /api/info               | ✅ | |
 | /api/v1/directory       | | |
 | /api/v1/shield.svg      | | |
 | /api/v1/spotlight       | | |
