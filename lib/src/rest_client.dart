@@ -18,6 +18,7 @@ import 'models/rooms/favourite_room.dart';
 import 'models/rooms/get_admin_rooms.dart';
 import 'models/rooms/get_room_info.dart';
 import 'models/rooms/get_rooms.dart';
+import 'models/settings/settings.dart';
 
 import 'models/authentication/login.dart';
 import 'models/authentication/logout.dart';
@@ -129,7 +130,7 @@ abstract class RestClient {
   @Headers(<String, String>{'requires-auth': 'true'})
   Future<RocketChatResponse> unstarChatMessage(UnstarMessageRequest followMessageRequest);
 
-  //Command
+  // Command
 
   @GET('/api/v1/commands.get')
   @Headers(<String, String>{'requires-auth': 'true'})
@@ -138,5 +139,18 @@ abstract class RestClient {
   @GET('/api/v1/commands.list')
   @Headers(<String, String>{'requires-auth': 'true'})
   Future<GetAllCommandsResult> getAllCommands();
+
+  // Settings
+
+  @GET('/api/v1/settings.public')
+  Future<SettingsResult> getPublicSettings();
+
+  @GET('/api/v1/settings')
+  @Headers(<String, String>{'requires-auth': 'true'})
+  Future<SettingsResult> getPrivateSettings();
+
+  @GET('/api/v1/settings/{settingId}')
+  @Headers(<String, String>{'requires-auth': 'true'})
+  Future<Setting> getSettings(@Path() String settingId);
 
 }

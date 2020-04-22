@@ -423,7 +423,7 @@ class _RestClient implements RestClient {
             extra: _extra,
             baseUrl: baseUrl),
         data: _data);
-    final value = GetCommandResult.fromJson(_result.data);
+    final value = GetAllCommandsResult.fromJson(_result.data);
     return Future.value(value);
   }
 }

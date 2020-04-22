@@ -258,12 +258,12 @@ Help of any kind small or large is very much welcomed. PR's will be reviewed.
 | /api/v1/emoji-custom.update	| Low Priority ⬇️ | |
 | | | |
 | **Settings** | | |
-| /api/v1/settings               | | |
-| /api/v1/settings.public	       | | |
+| /api/v1/settings               | ✅ | |
+| /api/v1/settings.public	     | ✅ | |
 | /api/v1/settings.oauth         | | |
-| /api/v1/service.configurations | | |
-| /api/v1/settings/:_id	         | | |
-| /api/v1/settings/:_id	         | | |
+| /api/v1/service.configurations | 🔴 | Docs are improperly documented |
+| /api/v1/settings/:_id [GET]    | ✅ | |
+| /api/v1/settings/:_id [POST]   | | |
 | | | |
 | **Subscriptions** | | |
 | /api/v1/subscriptions.get    | P2 | |
