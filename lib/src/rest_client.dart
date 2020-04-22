@@ -5,6 +5,7 @@ import 'package:dio/dio.dart' hide Headers;
 import 'package:rocket_chat_dart_sdk/src/models/chat/star_message.dart';
 import 'package:rocket_chat_dart_sdk/src/models/chat/unstar_message.dart';
 import 'package:rocket_chat_dart_sdk/src/models/command/get_command.dart';
+import 'package:rocket_chat_dart_sdk/src/models/command/run_command.dart';
 
 import 'models/channels/get_channel_history.dart';
 import 'models/chat/delete_message.dart';
@@ -139,6 +140,10 @@ abstract class RestClient {
   @GET('/api/v1/commands.list')
   @Headers(<String, String>{'requires-auth': 'true'})
   Future<GetAllCommandsResult> getAllCommands();
+
+  @POST('/api/v1/commands.run')
+  @Headers(<String, String>{'requires-auth': 'true'})
+  Future<RocketChatResponse> runCommand(@Body() RunCommandRequest request);
 
   // Settings
 

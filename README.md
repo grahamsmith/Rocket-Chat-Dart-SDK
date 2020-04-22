@@ -246,7 +246,7 @@ Help of any kind small or large is very much welcomed. PR's will be reviewed.
 | **Command Methods** | | |
 | /api/v1/commands.get  | ✅ | |
 | /api/v1/commands.list | ✅ | |
-| /api/v1/commands.run	| | |
+| /api/v1/commands.run	| ✅ | |
 | | | |
 | **Custom User Status** | | |
 | /api/v1/custom-user-status.list | Low priority | |

@@ -426,4 +426,59 @@ class _RestClient implements RestClient {
     final value = GetAllCommandsResult.fromJson(_result.data);
     return Future.value(value);
   }
+
+  @override
+  getPublicSettings() async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final Response<Map<String, dynamic>> _result = await _dio.request(
+        '/api/v1/settings.public',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'GET',
+            headers: <String, dynamic>{},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    final value = SettingsResult.fromJson(_result.data);
+    return Future.value(value);
+  }
+
+  @override
+  getPrivateSettings() async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final Response<Map<String, dynamic>> _result = await _dio.request(
+        '/api/v1/settings',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'GET',
+            headers: <String, dynamic>{'requires-auth': 'true'},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    final value = SettingsResult.fromJson(_result.data);
+    return Future.value(value);
+  }
+
+  @override
+  getSettings(settingId) async {
+    ArgumentError.checkNotNull(settingId, 'settingId');
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final Response<Map<String, dynamic>> _result = await _dio.request(
+        '/api/v1/settings/$settingId',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'GET',
+            headers: <String, dynamic>{'requires-auth': 'true'},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    final value = Setting.fromJson(_result.data);
+    return Future.value(value);
+  }
 }
