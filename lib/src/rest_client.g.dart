@@ -370,4 +370,60 @@ class _RestClient implements RestClient {
     final value = RocketChatResponse.fromJson(_result.data);
     return Future.value(value);
   }
+
+  @override
+  unstarChatMessage(followMessageRequest) async {
+    ArgumentError.checkNotNull(followMessageRequest, 'followMessageRequest');
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final Response<Map<String, dynamic>> _result = await _dio.request(
+        '/api/v1/chat.unstarMessage',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'POST',
+            headers: <String, dynamic>{'requires-auth': 'true'},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    final value = RocketChatResponse.fromJson(_result.data);
+    return Future.value(value);
+  }
+
+  @override
+  getCommand(command) async {
+    ArgumentError.checkNotNull(command, 'command');
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{'command': command};
+    final _data = <String, dynamic>{};
+    final Response<Map<String, dynamic>> _result = await _dio.request(
+        '/api/v1/commands.get',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'GET',
+            headers: <String, dynamic>{'requires-auth': 'true'},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    final value = GetCommandResult.fromJson(_result.data);
+    return Future.value(value);
+  }
+
+  @override
+  getAllCommands() async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final Response<Map<String, dynamic>> _result = await _dio.request(
+        '/api/v1/commands.list',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'GET',
+            headers: <String, dynamic>{'requires-auth': 'true'},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    final value = GetCommandResult.fromJson(_result.data);
+    return Future.value(value);
+  }
 }
