@@ -7,6 +7,7 @@ import 'package:rocket_chat_dart_sdk/src/models/chat/unstar_message.dart';
 import 'package:rocket_chat_dart_sdk/src/models/command/get_command.dart';
 import 'package:rocket_chat_dart_sdk/src/models/command/run_command.dart';
 
+import 'models/authentication/login_with_google.dart';
 import 'models/channels/get_channel_history.dart';
 import 'models/chat/delete_message.dart';
 import 'models/chat/follow_message.dart';
@@ -47,6 +48,9 @@ abstract class RestClient {
   @POST('/api/v1/login')
   Future<LoginResult> login(@Body() LoginRequest loginRequest);
 
+  @POST('/api/v1/login')
+  Future<LoginResult> loginWithGoogle(@Body() LoginWithGoogleRequest loginRequest);
+
   @GET('/api/v1/me')
   @Headers(<String, String>{'requires-auth': 'true'})
   Future<Me> me();
@@ -84,18 +88,6 @@ abstract class RestClient {
   @GET('/api/v1/rooms.info?roomName={roomName}')
   @Headers(<String, String>{'requires-auth': 'true'})
   Future<GetRoomInfoResult> getRoomInfoById(@Path() String roomName);
-
-//  @GET("/api/v1/rooms.getDiscussions") //TODO - unclear docs -http://localhost:3000/api/v1/rooms.getDiscussions?roomId=GENERAL
-//  @Headers(<String, String>{"requires-auth": "true"})
-//  Future<LeaveRoomResult> getDiscussions();
-
-//  @GET("/api/v1/rooms.adminRooms?types[]={type}&filter={filter}") //TODO
-//  @Headers(<String, String>{"requires-auth": "true"})
-//  Future<LeaveRoomResult> adminRooms(@Path() String types, @Path() String filter);
-
-//  @POST("/api/v1/rooms.upload/{roomId}") //TODO
-//  @Headers(<String, String>{"requires-auth": "true"})
-//  Future<LeaveRoomResult> uploadFileToRoom(@Part() File file);
 
   //PUSH TOKENS
 
