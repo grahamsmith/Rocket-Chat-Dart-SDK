@@ -2,6 +2,8 @@ library rocket_chat_dart_sdk;
 
 import 'package:retrofit/retrofit.dart';
 import 'package:dio/dio.dart' hide Headers;
+import 'package:rocket_chat_dart_sdk/src/models/authentication/login_with_facebook.dart';
+import 'package:rocket_chat_dart_sdk/src/models/authentication/login_with_twitter.dart';
 import 'package:rocket_chat_dart_sdk/src/models/chat/star_message.dart';
 import 'package:rocket_chat_dart_sdk/src/models/chat/unstar_message.dart';
 import 'package:rocket_chat_dart_sdk/src/models/command/get_command.dart';
@@ -50,6 +52,12 @@ abstract class RestClient {
 
   @POST('/api/v1/login')
   Future<LoginResult> loginWithGoogle(@Body() LoginWithGoogleRequest loginRequest);
+
+  @POST('/api/v1/login')
+  Future<LoginResult> loginWithFacebook(@Body() LoginWithFacebookRequest loginRequest);
+
+  @POST('/api/v1/login')
+  Future<LoginResult> loginWithTwitter(@Body() LoginWithTwitterRequest loginRequest);
 
   @GET('/api/v1/me')
   @Headers(<String, String>{'requires-auth': 'true'})
