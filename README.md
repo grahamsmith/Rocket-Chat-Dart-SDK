@@ -249,7 +249,7 @@ Help of any kind small or large is very much welcomed. PR's will be reviewed.
 | /api/v1/commands.run	| ✅ | |
 | | | |
 | **Custom User Status** | | |
-| /api/v1/custom-user-status.list | Low priority | |
+| /api/v1/custom-user-status.list | ✅ | |
 | | | |
 | **Emoji Custom** | | |
 | /api/v1/emoji-custom.list   | Low Priority ⬇️ | |
