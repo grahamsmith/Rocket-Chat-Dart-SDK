@@ -8,6 +8,7 @@ import 'package:rocket_chat_dart_sdk/src/models/chat/star_message.dart';
 import 'package:rocket_chat_dart_sdk/src/models/chat/unstar_message.dart';
 import 'package:rocket_chat_dart_sdk/src/models/command/get_command.dart';
 import 'package:rocket_chat_dart_sdk/src/models/command/run_command.dart';
+import 'package:rocket_chat_dart_sdk/src/models/custom_statuses/list_custom_statuses.dart';
 
 import 'models/authentication/login_with_google.dart';
 import 'models/channels/get_channel_history.dart';
@@ -150,6 +151,12 @@ abstract class RestClient {
   @POST('/api/v1/commands.run')
   @Headers(<String, String>{'requires-auth': 'true'})
   Future<RocketChatResponse> runCommand(@Body() RunCommandRequest request);
+
+  // Custom User Status
+
+  @GET('/api/v1/custom-user-status.list')
+  @Headers(<String, String>{'requires-auth': 'true'})
+  Future<GetCustomStatuesesResult> getCustomUserStatuses();
 
   // Settings
 
