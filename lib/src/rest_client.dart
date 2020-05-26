@@ -1,5 +1,7 @@
 library rocket_chat_dart_sdk;
 
+import 'dart:io';
+
 import 'package:retrofit/retrofit.dart';
 import 'package:dio/dio.dart' hide Headers;
 import 'package:rocket_chat_dart_sdk/src/models/authentication/login_with_facebook.dart';
@@ -141,7 +143,7 @@ abstract class RestClient {
 
   @POST('/api/v1/rooms.upload/{roomId}')
   @Headers(<String, String>{'requires-auth': 'true'})
-  Future<RocketChatResponse> uploadFileToRoom(@Path() String roomId, RoomUploadRequest uploadRequest);
+  Future<RocketChatResponse> uploadFileToRoom(@Path() String roomId, @Part() File file, { @Part() String message, @Part() String description, @Part() String threadMessageId });
 
   // Command
 
