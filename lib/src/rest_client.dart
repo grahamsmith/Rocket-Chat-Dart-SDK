@@ -9,6 +9,7 @@ import 'package:rocket_chat_dart_sdk/src/models/chat/unstar_message.dart';
 import 'package:rocket_chat_dart_sdk/src/models/command/get_command.dart';
 import 'package:rocket_chat_dart_sdk/src/models/command/run_command.dart';
 import 'package:rocket_chat_dart_sdk/src/models/custom_statuses/list_custom_statuses.dart';
+import 'package:rocket_chat_dart_sdk/src/models/rooms/rooms_upload.dart';
 
 import 'models/authentication/login_with_google.dart';
 import 'models/channels/get_channel_history.dart';
@@ -137,6 +138,10 @@ abstract class RestClient {
   @POST('/api/v1/chat.unstarMessage')
   @Headers(<String, String>{'requires-auth': 'true'})
   Future<RocketChatResponse> unstarChatMessage(UnstarMessageRequest followMessageRequest);
+
+  @POST('/api/v1/rooms.upload/{roomId}')
+  @Headers(<String, String>{'requires-auth': 'true'})
+  Future<RocketChatResponse> uploadFileToRoom(@Path() String roomId, RoomUploadRequest uploadRequest);
 
   // Command
 
