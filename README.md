@@ -42,7 +42,7 @@ Help of any kind small or large is very much welcomed. PR's will be reviewed.
 | **Authentication** | | |
 | /api/v1/login [Authenticate with the REST API] | ✅ | |
 | /api/v1/login [Authenticate with google]       | ✅ | |
-| /api/v1/login [Authenticate with facebook]     | | |
+| /api/v1/login [Authenticate with facebook]     | ✅ | |
 | /api/v1/login [Authenticate with twitter]      | ✅ | |
 | /api/v1/logout                                 | ✅ | |
 | /api/v1/me	                                 | ✅ | |
