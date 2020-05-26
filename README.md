@@ -241,7 +241,7 @@ Help of any kind small or large is very much welcomed. PR's will be reviewed.
 | /api/v1/rooms.info             | ✅ | |
 | /api/v1/rooms.leave            | ✅ | |
 | /api/v1/rooms.saveNotification | 🟠 | |
-| /api/v1/rooms.upload/:rid      | 🟠 | |
+| /api/v1/rooms.upload/:rid      | ✅ | |
 | | | |
 | **Command Methods** | | |
 | /api/v1/commands.get  | ✅ | |
