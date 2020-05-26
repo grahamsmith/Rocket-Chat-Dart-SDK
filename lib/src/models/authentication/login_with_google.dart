@@ -17,10 +17,10 @@ class LoginWithGoogleRequest {
   @JsonKey(name: 'expiresIn')
   int expiresIn;
 
-  @JsonKey(name: 'scope')
+  @JsonKey(name: 'scope', includeIfNull: false)
   String scope;
 
-  LoginWithGoogleRequest(this.accessToken, this.idToken, this.expiresIn, {this.scope = ''});
+  LoginWithGoogleRequest(this.accessToken, this.idToken, this.expiresIn, {this.scope});
 
   factory LoginWithGoogleRequest.fromJson(Map<String, dynamic> json) => _$LoginWithGoogleRequestFromJson(json);
   Map<String, dynamic> toJson() => _$LoginWithGoogleRequestToJson(this);
