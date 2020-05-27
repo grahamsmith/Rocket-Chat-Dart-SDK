@@ -233,7 +233,7 @@ Help of any kind small or large is very much welcomed. PR's will be reviewed.
 | | | |
 | **Rooms** | | |
 | /api/v1/rooms.adminRooms       | ✅ | |
-| /api/v1/rooms.cleanHistory     | 🟠 | |
+| /api/v1/rooms.cleanHistory     | ✅ | |
 | /api/v1/rooms.createDiscussion | ✅ | |
 | /api/v1/rooms.favorite         | ✅ | |
 | /api/v1/rooms.get              | ✅ | |

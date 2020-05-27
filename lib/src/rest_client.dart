@@ -11,7 +11,7 @@ import 'package:rocket_chat_dart_sdk/src/models/chat/unstar_message.dart';
 import 'package:rocket_chat_dart_sdk/src/models/command/get_command.dart';
 import 'package:rocket_chat_dart_sdk/src/models/command/run_command.dart';
 import 'package:rocket_chat_dart_sdk/src/models/custom_statuses/list_custom_statuses.dart';
-import 'package:rocket_chat_dart_sdk/src/models/rooms/rooms_upload.dart';
+import 'package:rocket_chat_dart_sdk/src/models/rooms/clean_room_history.dart';
 
 import 'models/authentication/login_with_google.dart';
 import 'models/channels/get_channel_history.dart';
@@ -77,6 +77,10 @@ abstract class RestClient {
   @Headers(<String, String>{'requires-auth': 'true'})
   Future<GetAdminRoomsResult> getAdminRooms({@Query('types') String types = '', @Query('filter') String filter = ''});
 
+  @GET('/api/v1/rooms.cleanHistory')
+  @Headers(<String, String>{'requires-auth': 'true'})
+  Future<GetAdminRoomsResult> cleanRoomHistory(@Body() CleanRoomHistoryRequest cleanRoomHistoryRequest);
+
   @POST('/api/v1/rooms.leave')
   @Headers(<String, String>{'requires-auth': 'true'})
   Future<LeaveRoomResult> leaveRoom(@Body() LeaveRoomRequest leaveRoomRequest);
@@ -100,6 +104,10 @@ abstract class RestClient {
   @GET('/api/v1/rooms.info?roomName={roomName}')
   @Headers(<String, String>{'requires-auth': 'true'})
   Future<GetRoomInfoResult> getRoomInfoById(@Path() String roomName);
+
+  @POST('/api/v1/rooms.upload/{roomId}')
+  @Headers(<String, String>{'requires-auth': 'true'})
+  Future<RocketChatResponse> uploadFileToRoom(@Path() String roomId, @Part() File file, { @Part() String message, @Part() String description, @Part() String threadMessageId });
 
   //PUSH TOKENS
 
@@ -140,10 +148,6 @@ abstract class RestClient {
   @POST('/api/v1/chat.unstarMessage')
   @Headers(<String, String>{'requires-auth': 'true'})
   Future<RocketChatResponse> unstarChatMessage(UnstarMessageRequest followMessageRequest);
-
-  @POST('/api/v1/rooms.upload/{roomId}')
-  @Headers(<String, String>{'requires-auth': 'true'})
-  Future<RocketChatResponse> uploadFileToRoom(@Path() String roomId, @Part() File file, { @Part() String message, @Part() String description, @Part() String threadMessageId });
 
   // Command
 
