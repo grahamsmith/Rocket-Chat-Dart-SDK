@@ -22,7 +22,7 @@ class GetAdminRoomsResult {
   @JsonKey(name: 'total')
   int total;
 
-  GetAdminRoomsResult(this.success, this.rooms, this.count, this.offset, this.total)
+  GetAdminRoomsResult(this.success, this.rooms, this.count, this.offset, this.total);
 
   factory GetAdminRoomsResult.fromJson(Map<String, dynamic> json) => _$GetAdminRoomsResultFromJson(json);
   Map<String, dynamic> toJson() => _$GetAdminRoomsResultToJson(this);

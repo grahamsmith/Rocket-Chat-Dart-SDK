@@ -26,5 +26,5 @@ class CleanRoomHistoryRequest {
   CleanRoomHistoryRequest(this.roomId, this.latest, this.oldest, {this.inclusive, this.excludePinned, this.filesOnly});
 
   factory CleanRoomHistoryRequest.fromJson(Map<String, dynamic> json) => _$CleanRoomHistoryRequestFromJson(json);
-  Map<String, dynamic> toJson() => _$CleanRoomHistoryRequesttToJson(this);
+  Map<String, dynamic> toJson() => _$CleanRoomHistoryRequestToJson(this);
 }
