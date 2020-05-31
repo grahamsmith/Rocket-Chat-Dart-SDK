@@ -1,0 +1,47 @@
+{
+	"Generate factory methods for JSON Serialiser": {
+		"scope": "dart",
+		"prefix": "json-factory-methods",
+		"body": [
+			"factory ${CLIPBOARD:${1:type_here}}.fromJson(Map<String, dynamic> json) => _$${CLIPBOARD:${1:type_here}}FromJson(json);",
+			"Map<String, dynamic> toJson() => _$${CLIPBOARD:${1:type_here}}ToJson(this);"
+		],
+		"description": "Generates factory methods for given Dart class to work with JSON Serialisation"
+	},
+	"Generate class with factory methods for JSON Serialiser": {
+		"scope": "dart",
+		"prefix": "create-json-serialisation-class",
+		"body": [
+			"import 'package:json_annotation/json_annotation.dart';",
+			"",
+			"part '${TM_FILENAME_BASE}.g.dart';",
+			"",
+			"@JsonSerializable()",
+			"class ${CLASS_NAME:${1:type_here}} {",
+			"",
+			"${CLASS_NAME:${1:type_here}}();",
+			"",
+			"factory ${CLASS_NAME:${1:type_here}}.fromJson(Map<String, dynamic> json) => _$${CLASS_NAME:${1:type_here}}FromJson(json);",
+			"Map<String, dynamic> toJson() => _$${CLASS_NAME:${1:type_here}}ToJson(this);",
+			"}"
+		],
+		"description": "Generates class with factory methods for given Dart class to work with JSON Serialisation"
+	},
+	"Add import for JSON Serialiser": {
+		"scope": "dart",
+		"prefix": "add-json-serialiser-import",
+		"body": [
+			"import 'package:json_annotation/json_annotation.dart';"
+		],
+		"description": "Adds import for serialising json"
+	},
+	"Add json key string for JSON Serialiser": {
+		"scope": "dart",
+		"prefix": "add-json-key-string",
+		"body": [
+			"@JsonKey(name: '${SERIALISATION_KEY:${1:type_here}}')",
+			"String ${STRING_PROPERTY};"
+		],
+		"description": "Adds import for serialising json"
+	}
+}
